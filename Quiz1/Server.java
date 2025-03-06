@@ -5,6 +5,7 @@ public class Server {
 	
 
 	public static void main(String[] args) {
+
 		ServerSocket ss = null;
 		Socket s = null;
 		
