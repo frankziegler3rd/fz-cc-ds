@@ -1,3 +1,6 @@
+/*
+ * Frank Ziegler, Calen Cuesta -- Assignment 2
+ */
 import java.io.*;
 import java.net.*;
 import java.math.BigInteger;

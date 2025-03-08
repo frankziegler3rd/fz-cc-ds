@@ -1,6 +1,13 @@
+/*
+ * Frank Ziegler, Calen Cuesta -- Assignment 2
+ */
+
 import java.io.*;
 import java.net.*;
 
+/*
+ * Creates an instance of the distributed solver and takes user-inputted integers to send to the server to factor. 
+ */
 public class Client {
 	
 	// BufferedReader for reading client input
