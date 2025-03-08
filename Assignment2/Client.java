@@ -1,9 +1,10 @@
 import java.io.*;
 import java.net.*;
-import java.math.BigInteger;
 
 public class Client {
-
+	
+	// BufferedReader for reading client input
+	// because Scanner sucks IMO 
 	static BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
 
 	public static void main(String[] args) throws IOException {
@@ -13,9 +14,9 @@ public class Client {
 		while (!quit) {
 			System.out.print("Enter a number to factorize or type 2 to quit: ");
 			String n = stdin.readLine().trim();
-			if (n.equals("2")) {
+			if (n.equals("2")) { // QUIT
 				quit = true;
-			} else {
+			} else { // Prints the factors of the inputted number retrieved from the server
 				System.out.println(solver.solve(n));
 			}
 		}

@@ -1,6 +1,11 @@
 import java.io.*;
 import java.net.*;
 
+/*
+ * The "object" that the client communicates to the server through per part 2 of 
+ * assignment instructions. Writes the client input to the server, and sends the
+ * server output back to the client to print.  
+ */
 public class DistributedSolver implements Solver {
 	
 	public String solve(String n) {
