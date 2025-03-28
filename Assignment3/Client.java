@@ -1,3 +1,7 @@
+/*
+ * Frank Ziegler, Calen Cuesta -- Assignment 3
+ */
+
 import java.io.*;
 import java.net.*;
 import java.math.BigInteger;
@@ -5,19 +9,20 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Set;
 
+/*
+ * Menu-style client side.
+ */
 public class Client {
 
 	static BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
 
-	public static String stringifyData(Object[] data) {
-		StringBuilder sb = new StringBuilder();
-		for (int i = 0; i < data.length; i++) {
-			sb.append(data[i]);
-		}
-		return sb.toString();
-	}
-
-
+	/*
+	 * Establishes connection with server, 
+	 * While user has not quit program: allows them to choose menu option corresponding to parts 1-3 of Assignment 3.
+	 * Part 1: Receives int[] from server side and prints it.
+	 * Part 2: Receives ArrayList<String> from server side and prints it.
+	 * Part 3: Receives Set<BigInteger> from server side and prints it. 
+	 */
 	public static void main(String[] args) {
 		
 		Socket s = null;
@@ -42,23 +47,23 @@ public class Client {
 					break;
 				}
 				Object o = null;
-				dos.writeInt(menu);
+				dos.writeInt(menu); // write menu option so server knows what to do
 				switch(menu) {
-					case 1:
+					case 1: // Assignment 3 Part 1
                                 		o = ois.readObject();
 						if (o instanceof int[]) {
 							int[] intArr = (int[]) o;
 							System.out.print("Your integer array: " + Arrays.toString(intArr));
 						}
 						break;
-					case 2:
+					case 2: // Assignment 3 Part 2
                                 		o = ois.readObject();
 						if (o instanceof ArrayList) {
 							ArrayList<String> strAL = (ArrayList<String>) o;	
 							System.out.print("Your string ArrayList: " + Arrays.toString(strAL.toArray()));
 						}
 					       	break;	
-					case 3:
+					case 3: // Assignment 3 Part 3
 						System.out.print("Enter a number to factor: ");
 						String numToFact = stdin.readLine().trim();
 						System.out.println();

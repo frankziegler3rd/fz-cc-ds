@@ -1,5 +1,5 @@
 /*
- * Frank Ziegler, Calen Cuesta -- Assignment 2
+ * Frank Ziegler, Calen Cuesta -- Assignment 3
  */
 import java.io.*;
 import java.net.*;
@@ -10,7 +10,7 @@ import java.util.Collections;
 import java.util.ArrayList;
 
 /*
- * Server side code -- handles factorization logic and communicating back with the distributed intermediary. 
+ * Server side code. 
  */
 public class Server {
 	
@@ -41,8 +41,7 @@ public class Server {
 	}
 
 	/*
-	 * Retrieves client connection through input stream and performs factorization upon request, returns string
-	 * representation of the factors set to the distributed intermediary object to send back to client.  
+	 * Receives socket connection, writes objects relative to user chosen menu option.
 	 */
 	public static void main(String[] args) {
 		while (true) { // To continue receiving connections and not closing after the first one. 
@@ -56,7 +55,7 @@ public class Server {
 				DataInputStream dis = new DataInputStream(s.getInputStream());
 				ObjectOutputStream oos = new ObjectOutputStream(s.getOutputStream());
 				int menu = dis.readInt();
-				switch (menu) {
+				switch (menu) { // User-selected menu option
 					case 1:	
 						int[] intArr = {1,1,2,3,5,8,13};
 						oos.writeObject(intArr);
