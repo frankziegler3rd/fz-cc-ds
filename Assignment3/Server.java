@@ -7,6 +7,7 @@ import java.math.BigInteger;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.Collections;
+import java.util.ArrayList;
 
 /*
  * Server side code -- handles factorization logic and communicating back with the distributed intermediary. 
@@ -53,17 +54,28 @@ public class Server {
 				ss = new ServerSocket(10000);
 				s = ss.accept();
 				DataInputStream dis = new DataInputStream(s.getInputStream());
-				ObjectOutputStream dos = new ObjectOutputStream(s.getOutputStream());
+				ObjectOutputStream oos = new ObjectOutputStream(s.getOutputStream());
 				int menu = dis.readInt();
 				switch (menu) {
-					case 1:
+					case 1:	
+						int[] intArr = {1,1,2,3,5,8,13};
+						oos.writeObject(intArr);
 						break;
 					case 2:
+						ArrayList<String> al = new ArrayList<String>();
+						al.add("I");
+						al.add("shall");
+						al.add("not");
+						al.add("tell");
+						al.add("lies");
+						oos.writeObject(al);
 						break;
 					case 3:
+						BigInteger n = new BigInteger(dis.readUTF());
+						Set<BigInteger> factors = factorize(n);
+						oos.writeObject(factors);
 						break;
-				BigInteger n = new BigInteger(dis.readUTF());
-				Set<BigInteger> factors = factorize(n);
+				}
 			}
 			catch (IOException e) {
 				System.out.println(e);

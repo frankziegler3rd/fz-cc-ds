@@ -2,10 +2,20 @@ import java.io.*;
 import java.net.*;
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Client {
 
 	static BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
+
+	public static String stringifyData(Object[] data) {
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < data.length; i++) {
+			sb.append(data[i]);
+		}
+		return sb.toString();
+	}
+
 
 	public static void main(String[] args) {
 		
@@ -36,29 +46,30 @@ public class Client {
                                 		o = ois.readObject();
 						if (o instanceof int[]) {
 							int[] intArr = (int[]) o;
-							System.out.println("The elements of the array you received are " + o.toString());
+							System.out.println("The elements of the array you received are " + Arrays.toString(intArr));
 						}
 						break;
 					case 2:
                                 		o = ois.readObject();
 						if (o instanceof ArrayList) {
-							ArrayList<String> strArrList = (ArrayList<String>) o;	
-							System.out.println("The elements of the ArrayList you received are " + o.toString());
+							ArrayList<String> strAL = (ArrayList<String>) o;	
+							System.out.println("The elements of the ArrayList you received are " + Arrays.toString(strAL.toArray()));
 						}
 					       	break;	
 					case 3:
 						System.out.print("Enter a number to factor: ");
-						int numToFact = Integer.parseInt(stdin.readLine().trim());
+						String numToFact = stdin.readLine().trim();
 						System.out.println();
-						dos.writeInt(numToFact);
+						dos.writeUTF(numToFact);
 						o = ois.readObject();
 						if (o instanceof BigInteger[]) {
 							BigInteger[] bigIntArr = (BigInteger[]) o;
-							System.out.println("The elem of the array you received are " + o.toString());
+							System.out.println("The elem of the array you received are " + Arrays.toString(bigIntArr));
 						}
 						break;
 				}
-				System.out.println(".");
+				System.out.print(".");
+				System.out.println();
 			}
 		}
 		catch (IOException e) {
