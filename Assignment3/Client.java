@@ -3,6 +3,7 @@ import java.net.*;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Set;
 
 public class Client {
 
@@ -38,6 +39,7 @@ public class Client {
 				if (menu == 0) {
 					quit = true;
 					System.out.println("Goodbye.");
+					break;
 				}
 				Object o = null;
 				dos.writeInt(menu);
@@ -46,14 +48,14 @@ public class Client {
                                 		o = ois.readObject();
 						if (o instanceof int[]) {
 							int[] intArr = (int[]) o;
-							System.out.println("The elements of the array you received are " + Arrays.toString(intArr));
+							System.out.print("Your integer array: " + Arrays.toString(intArr));
 						}
 						break;
 					case 2:
                                 		o = ois.readObject();
 						if (o instanceof ArrayList) {
 							ArrayList<String> strAL = (ArrayList<String>) o;	
-							System.out.println("The elements of the ArrayList you received are " + Arrays.toString(strAL.toArray()));
+							System.out.print("Your string ArrayList: " + Arrays.toString(strAL.toArray()));
 						}
 					       	break;	
 					case 3:
@@ -62,9 +64,9 @@ public class Client {
 						System.out.println();
 						dos.writeUTF(numToFact);
 						o = ois.readObject();
-						if (o instanceof BigInteger[]) {
-							BigInteger[] bigIntArr = (BigInteger[]) o;
-							System.out.println("The elem of the array you received are " + Arrays.toString(bigIntArr));
+						if (o instanceof Set) {
+							Set<BigInteger> bigIntSet = (Set<BigInteger>) o;
+							System.out.print("The factors of " + numToFact + " are " + Arrays.toString(bigIntSet.toArray()));
 						}
 						break;
 				}
