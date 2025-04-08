@@ -2,3 +2,4 @@ I'm currently trying to configure the Git credentials manager to store my creden
 
 Test 1.
 Test 2.
+Test 3.
