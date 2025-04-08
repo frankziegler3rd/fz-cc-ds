@@ -5,10 +5,10 @@ public class Client {
 
 	static BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
 
-	public static void getCollatzFromServer(int n) {
+	public static void getDataStructuresFromServer(String method, Object pathVar) {
 		URL url = null;
 		try {
-			url = new URL("http://localhost:8080/collatz/"+n);
+			url = new URL("http://localhost:8080/"+method+"/"+pathVar);
 		} catch (MalformedURLException e) {
 			System.out.println(e);
 			return;
@@ -50,13 +50,16 @@ public class Client {
 			System.out.print("Type a menu option or 0 to quit: ");
 			menu = Integer.parseInt(stdin.readLine().trim());
 			System.out.println();
+			String method = null;
+			Object pathVar = null;
 			switch (menu) {
 				case 0: quit = true;
 					System.out.print("Goodbye");
 					break;
 				case 1: System.out.print("Input an integer: ");
-					int n = Integer.parseInt(stdin.readLine().trim());
-					getCollatzFromServer(n);
+					method = "collatz";
+					pathVar = Integer.parseInt(stdin.readLine().trim());
+					getDataStructuresFromServer(method, pathVar);
 					break;
 				case 2:
 					break;
