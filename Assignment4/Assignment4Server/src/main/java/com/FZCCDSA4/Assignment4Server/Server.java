@@ -19,6 +19,7 @@ public class Server {
 	
 	public static List<Integer> collatz(int n) {
 		List<Integer> seq = new ArrayList<Integer>();
+		seq.add(n);
 		while (n != 1) {
 			if (n % 2 == 0) {
 				n /= 2;

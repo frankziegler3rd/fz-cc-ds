@@ -52,6 +52,7 @@ public class Client {
 			System.out.println();
 			switch (menu) {
 				case 0: quit = true;
+					System.out.print("Goodbye");
 					break;
 				case 1: System.out.print("Input an integer: ");
 					int n = Integer.parseInt(stdin.readLine().trim());
@@ -62,6 +63,7 @@ public class Client {
 				case 3:
 					break;
 			}
+			System.out.println();
 		}	
 	}
 }
