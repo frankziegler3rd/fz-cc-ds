@@ -16,7 +16,15 @@ public class Server {
 	public static void main(String[] args) {
 		SpringApplication.run(Server.class, args);
 	}
-	
+
+	/*
+	 * The Collatz Sequence can be modeled after the following recursive formula:
+	 *
+	 * 		f(n) = n/2 if n is even, 3n+1 if n is odd
+	 *
+	 * The Collatz Conjecture states that given an integer n, the sequence will collapse to 1.
+	 * i.e. n = 6: [6, 3, 10, 5, 16, 8, 4, 2, 1]
+	 */	
 	public static List<Integer> collatz(int n) {
 		List<Integer> seq = new ArrayList<Integer>();
 		seq.add(n);

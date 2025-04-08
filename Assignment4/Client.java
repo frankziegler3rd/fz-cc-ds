@@ -1,3 +1,6 @@
+/*
+ * Frank Ziegler, Calen Cuesta -- Assignment 4
+ */
 import java.io.*;
 import java.net.*;
 
@@ -5,6 +8,15 @@ public class Client {
 
 	static BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
 
+	/*
+	 * Establishes HTTP connection with server at localhost:8080/endpoint. 
+	 *
+	 * The endpoint string is built off 2 parameters passed to this method: method (String)
+	 * and pathVar (Object). The idea is: the user interfacing with this client chooses some
+	 * menu option, and the "method" (base of the endpoint on the server side) is based on 
+	 * that menu option, i.e. "collatz" for http://localhost:8080/collatz/pathVar where 
+	 * the pathVar object is inputted by the user after choosing a menu option. 
+	 */
 	public static void getDataStructuresFromServer(String method, Object pathVar) {
 		URL url = null;
 		try {
