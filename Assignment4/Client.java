@@ -4,9 +4,32 @@
 import java.io.*;
 import java.net.*;
 
+import java.util.List;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Arrays;
+
 public class Client {
 
 	static BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
+
+	/*
+	 * Given a string of serialized data, parse it into the expected data type (by the given 
+	 * menu option we call method) and return it.
+	 */
+	public static Object deserializeByMethod(String serialized, String method) {
+		Object deserialized = null;
+		if (method.equals("collatz")) {
+			String replace = serialized.replaceAll("^\\[|]$", "");
+			List<String> temp = new ArrayList<String>(Arrays.asList(replace.replaceAll(", ", ",").split(",")));
+			List<Integer> deserializedList = new ArrayList<Integer>();
+			for (String s : temp) {
+				deserializedList.add(Integer.parseInt(s));
+			}
+			deserialized = deserializedList;
+		}
+		return deserialized;
+	}
 
 	/*
 	 * Establishes HTTP connection with server at localhost:8080/endpoint. 
@@ -17,13 +40,17 @@ public class Client {
 	 * that menu option, i.e. "collatz" for http://localhost:8080/collatz/pathVar where 
 	 * the pathVar object is inputted by the user after choosing a menu option. 
 	 */
-	public static void getDataStructuresFromServer(String method, Object pathVar) {
+	public static String getSerializedDataFromServer(String method, Object pathVar) {
 		URL url = null;
 		try {
-			url = new URL("http://localhost:8080/"+method+"/"+pathVar);
+			if (pathVar != null) {
+				url = new URL("http://localhost:8080/"+method+"/"+pathVar);
+			} else {
+				url = new URL("http://localhost:8080/"+method);
+			}
 		} catch (MalformedURLException e) {
 			System.out.println(e);
-			return;
+			return "";
 		}
 		HttpURLConnection hurlc = null;
 		try {
@@ -31,7 +58,7 @@ public class Client {
 			hurlc.setRequestMethod("GET");
 		} catch (IOException e) {
 			System.out.println(e);
-			return;
+			return "";
 		}
 		StringBuilder sb = new StringBuilder();
 		String inputLine;
@@ -42,9 +69,9 @@ public class Client {
 			}
 		} catch (IOException e) {
 			System.out.println(e);
-			return;
+			return "";
 		}
-		System.out.println(sb.toString());
+		return sb.toString();
 	}
 
 	public static void main(String[] args) throws IOException {
@@ -64,19 +91,25 @@ public class Client {
 			System.out.println();
 			String method = null;
 			Object pathVar = null;
+			String serialized = null;
+			Object deserialized = null;
 			switch (menu) {
 				case 0: quit = true;
-					System.out.print("Goodbye");
+					System.out.print("Goodbye.");
 					break;
 				case 1: System.out.print("Input an integer: ");
 					method = "collatz";
 					pathVar = Integer.parseInt(stdin.readLine().trim());
-					getDataStructuresFromServer(method, pathVar);
 					break;
 				case 2:
 					break;
 				case 3:
 					break;
+			}
+			if (menu > 0 && menu < 4) {
+				serialized = getSerializedDataFromServer(method, pathVar);
+				deserialized = deserializeByMethod(serialized, method);
+				System.out.println(deserialized);
 			}
 			System.out.println();
 		}	
