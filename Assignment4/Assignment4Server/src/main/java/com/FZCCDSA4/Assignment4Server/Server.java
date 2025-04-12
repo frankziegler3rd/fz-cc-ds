@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Set;
+import java.util.HashSet;
 
 @RestController
 @SpringBootApplication
@@ -43,5 +46,24 @@ public class Server {
 	public String sendCollatzSequence(@PathVariable int n) {
 		List<Integer> collatzSeq = collatz(n);
 		return collatzSeq.toString();
+	}
+	
+	
+	@RequestMapping("/map")
+	public String sendHashMap(){
+		HashMap <String, String> map = new HashMap<String, String>();
+		map.put("hello", "world");
+		map.put("merry", "christmas");
+		map.put("happy", "newyears");
+		return map.toString();	
+	}
+	
+	@RequestMapping("/set")
+	public String sendSet(){
+		Set<String> set = new HashSet<String>();
+		set.add("Hello");
+		set.add("my");
+		set.add("king");
+		return set.toString();
 	}
 }

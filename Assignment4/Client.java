@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Client {
 
@@ -27,7 +29,26 @@ public class Client {
 				deserializedList.add(Integer.parseInt(s));
 			}
 			deserialized = deserializedList;
+		} else if (method.equals("map")){
+			String replace = serialized.replaceAll("^\\{|}$", "").replaceAll(" ", "");
+			String[] toDeserialize = replace.split(",");
+			HashMap<String, String> deserializedMap = new HashMap<String, String>();
+			for(String s : toDeserialize){
+				String[] keyValue = s.split("=");
+				deserializedMap.put(keyValue[0], keyValue[1]);
+			}
+			deserialized = deserializedMap;
+		} else {
+			String replace = serialized.replaceAll("^\\[|]$", "").replaceAll(" ", "");
+			String[] toDeserialize = replace.split(",");
+			Set<String> deserializedSet = new HashSet<String>();
+			for (String s : toDeserialize){
+				deserializedSet.add(s);
+			}
+			deserialized = deserializedSet;
+			
 		}
+				
 		return deserialized;
 	}
 
@@ -78,8 +99,8 @@ public class Client {
 		System.out.println("---- Welcome to Assignment 4 ----");
 		System.out.println("MENU");
 		System.out.println("1 - Input a number n to get the corresponding Collatz sequence");
-		System.out.println("2 - Null");
-		System.out.println("3 - Null");
+		System.out.println("2 - Return a deserialized HashMap.");
+		System.out.println("3 - Return a deserialized HashSet.");
 		System.out.println();
 
 		boolean quit = false;
@@ -102,12 +123,17 @@ public class Client {
 					pathVar = Integer.parseInt(stdin.readLine().trim());
 					break;
 				case 2:
+					method = "map";
+					pathVar = null;
 					break;
 				case 3:
+					method = "set";
+					pathVar = null;
 					break;
 			}
 			if (menu > 0 && menu < 4) {
 				serialized = getSerializedDataFromServer(method, pathVar);
+				System.out.println(serialized);
 				deserialized = deserializeByMethod(serialized, method);
 				System.out.println(deserialized);
 			}
