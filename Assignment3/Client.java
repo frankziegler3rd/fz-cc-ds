@@ -30,7 +30,7 @@ public class Client {
 		try {
 			s = new Socket("127.0.0.1", 10000);
 			DataOutputStream dos = new DataOutputStream(s.getOutputStream());
-	       		ObjectInputStream ois = new ObjectInputStream(s.getInputStream());
+	       	ObjectInputStream ois = new ObjectInputStream(s.getInputStream());
 			System.out.println("ASSIGNMENT 3 MENU:");
 			System.out.println("1 - Get an array of integers");
 			System.out.println("2 - Get an ArrayList of Strings");
