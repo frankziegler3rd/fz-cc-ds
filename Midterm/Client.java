@@ -15,6 +15,8 @@ import java.util.Random;
 import java.util.List;
 import java.util.ArrayList;
 
+/* NOTE: "biarr" is SHORTHAND for "BigInteger array" */
+
 public class Client {
 
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in)); // for user input
