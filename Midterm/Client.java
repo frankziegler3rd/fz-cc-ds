@@ -52,6 +52,7 @@ public class Client {
                         break;
                     case 5:
                         part5(generateA2DBigIntegerArray());
+                        break;
                     case 0:
                         quit = true;
                         System.out.print("Goodbye.");
@@ -291,8 +292,11 @@ public class Client {
             while (!es.awaitTermination(1, TimeUnit.MINUTES)); // Wait for threads to finish
         } catch (InterruptedException e) { System.out.println(e); }
         System.out.println("The sorted input array:");
-        for (BigInteger[] row : sbiarr) {
-            System.out.println(sbiarr.toString());
+        for (int i = 0; i < sbiarr.length; i++) {
+            for (int j = 0; j < sbiarr[0].length; j++) {
+                System.out.print(sbiarr[i][j]+" ");
+            }
+            System.out.println();
         }
-    }
+    }   
 }
