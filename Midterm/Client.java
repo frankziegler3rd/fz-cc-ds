@@ -24,7 +24,7 @@ public class Client {
         boolean quit = false;
         int menu = -1;
 
-        System.out.println("-{ &$~!@ WELCOME TO MIDTERM @!~$& }-");
+        System.out.println("-{ &$~!@%*^ WELCOME TO MIDTERM ^*%@!~$& }-");
         System.out.println("___________________MENU___________________");
         System.out.println("1. Average an array of BigIntegers");
         System.out.println("2. Average the averages of arrays of a 2D BigInteger array");
