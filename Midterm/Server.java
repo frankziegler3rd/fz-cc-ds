@@ -45,8 +45,7 @@ public class Server {
             else if (menuSelection == 4) { // part 4
                 BigInteger[] clientData = (BigInteger[]) o;
                 BigInteger max = BigInteger.ZERO;
-                for (BigInteger bi : clientData) 
-                {
+                for (BigInteger bi : clientData) {
                     max = bi.max(max);
                 }
                 oos.writeObject(max);

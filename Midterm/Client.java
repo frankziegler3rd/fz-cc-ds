@@ -171,15 +171,12 @@ public class Client {
      * 4) Find the coordinates of the largest element inside the problem space. To do this, find the largest element of 
      * each row in a task, and then find the largest element of that set.
      */ 
-    public static void part4(BigInteger[][] biarr) 
-    {
+    public static void part4(BigInteger[][] biarr) {
         List<BigInteger> biggest = new ArrayList<BigInteger>();
         ExecutorService es = Executors.newFixedThreadPool(biarr.length);
-        for (int i = 0; i < biarr.length; i++)
-        {
+        for (int i = 0; i < biarr.length; i++) {
             final BigInteger[] row = biarr[i];
-            Runnable task = new Runnable() 
-            {
+            Runnable task = new Runnable() {
                 public void run() {
                     try {
                         Socket s = new Socket("127.0.0.1", 10000);
@@ -202,8 +199,7 @@ public class Client {
         } catch (InterruptedException e) { System.out.println(e); }
         // find the biggest of the biggest
         BigInteger maxBiggest = BigInteger.ZERO;
-        for (BigInteger bigGuy : biggest) 
-        {
+        for (BigInteger bigGuy : biggest) {
             maxBiggest = bigGuy.max(maxBiggest); // max(bigGuy, maxBiggest)
         }
         System.out.println("The biggest value in the input array is: " + maxBiggest + ".");
@@ -213,18 +209,14 @@ public class Client {
      * 5) Generate a task for each row and sort each row. Generate a new model that is a reflection of the original model,
      * but each row is sorted.
      */ 
-    public static void part5(BigInteger[][] ubiarr)
-    {
+    public static void part5(BigInteger[][] ubiarr) {
         BigInteger[][] sbiarr = new BigInteger[ubiarr.length][ubiarr[0].length];
         ExecutorService es = Executors.newFixedThreadPool(ubiarr.length);
-        for (int i = 0; i < ubiarr.length; i++) 
-        {
+        for (int i = 0; i < ubiarr.length; i++) {
             final BigInteger[] urow = ubiarr[i];
             final int idx = i;
-            Runnable task = new Runnable() 
-            {
-                public void run() 
-                {
+            Runnable task = new Runnable() {
+                public void run() {
                     try {
                         Socket s = new Socket("127.0.0.1", 10000); 
                         ObjectOutputStream oos = new ObjectOutputStream(s.getOutputStream());
@@ -263,27 +255,23 @@ public class Client {
     /*
      * Helper function for part one. Allows user to randomly generate a 1D BigInt array or input it themselves.
      */ 
-    public static BigInteger[] generateA1DBigIntegerArray() throws IOException
-    {
+    public static BigInteger[] generateA1DBigIntegerArray() throws IOException {
         System.out.print("Enter 1 to randomly generate a BigInt array or 2 to input it yourself: ");
         int choice = Integer.parseInt(br.readLine().trim());
         System.out.println();
         
         BigInteger[] biarr = null;
 
-        if (choice == 1) // generate it randomly
-        {
+        if (choice == 1) { // generate it randomly
             Random rand = new Random(System.currentTimeMillis());
             int minLen = 2;
             int len = minLen + rand.nextInt((100-minLen)+1);
             biarr = new BigInteger[len];
-            for (int i = 0; i < biarr.length; i++) 
-            {
+            for (int i = 0; i < biarr.length; i++) {
                 biarr[i] = new BigInteger(16 + rand.nextInt(49), rand);
             }
         } 
-        else if (choice == 2) // input it yourself
-        {
+        else if (choice == 2) { // input it yourself
             System.out.print("Length of array (up to 100): ");
             int len = Integer.parseInt(br.readLine().trim());
             System.out.println();
@@ -302,16 +290,14 @@ public class Client {
      * Helper function for parts two, three, four, and five. Allows user to randomly generate a 2D BigInt array 
      * or input it themselves.
      */ 
-    public static BigInteger[][] generateA2DBigIntegerArray() throws IOException
-    {
+    public static BigInteger[][] generateA2DBigIntegerArray() throws IOException {
         System.out.print("Enter 1 to randomly generate a BigInt array or 2 to input it yourself: ");
         int choice = Integer.parseInt(br.readLine().trim());
         System.out.println();
         
         BigInteger[][] biarr = null;
 
-        if (choice == 1) // generate it randomly
-        {
+        if (choice == 1) { // generate it randomly
             Random rand = new Random(System.currentTimeMillis());
             int minRows = 2, minCols = 2;
             int rows = minRows + rand.nextInt((60-minRows)+1);
@@ -323,8 +309,7 @@ public class Client {
                 }
             }
         } 
-        else if (choice == 2) // input it yourself
-        {
+        else if (choice == 2) { // input it yourself
             System.out.print("Number of rows (up to 60): ");
             System.out.println();
             int rows = Integer.parseInt(br.readLine().trim());
