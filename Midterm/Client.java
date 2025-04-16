@@ -25,6 +25,9 @@ public class Client {
         System.out.println("___________________MENU___________________");
         System.out.println("1. Average an array of BigIntegers");
         System.out.println("2. Average the averages of arrays of a 2D BigInteger array");
+        System.out.println("3. Get the total average of a 2D BigInteger array");
+        System.out.println("4. Get the biggest value in a 2D BigInteger array");
+        System.out.println("5. Sort an array of BigIntegers");
         System.out.println();
 
 
@@ -218,7 +221,7 @@ public class Client {
         System.out.println("The average of the total data set is " + totalSum.get().divide(new BigInteger(Integer.toString(biarr.length * biarr[0].length)) ) );
     }
 
-    public static BigInteger part4(BigInteger[][] biarr) 
+    public static void part4(BigInteger[][] biarr) 
     {
         List<BigInteger> biggest = new ArrayList<BigInteger>();
         ExecutorService es = Executors.newFixedThreadPool(biarr.length);
@@ -253,10 +256,10 @@ public class Client {
         {
             maxBiggest = bigGuy.max(maxBiggest); // max(bigGuy, maxBiggest)
         }
-        return maxBiggest;
+        System.out.println("The biggest value in the input array is: " + maxBiggest + ".");
     }
     
-    public static BigInteger[][] part5(BigInteger[][] ubiarr)
+    public static void part5(BigInteger[][] ubiarr)
     {
         BigInteger[][] sbiarr = new BigInteger[ubiarr.length][ubiarr[0].length];
         ExecutorService es = Executors.newFixedThreadPool(ubiarr.length);
@@ -287,7 +290,9 @@ public class Client {
         try {
             while (!es.awaitTermination(1, TimeUnit.MINUTES)); // Wait for threads to finish
         } catch (InterruptedException e) { System.out.println(e); }
-        
-        return sbiarr;
+        System.out.println("The sorted input array:");
+        for (BigInteger[] row : sbiarr) {
+            System.out.println(sbiarr.toString());
+        }
     }
 }
