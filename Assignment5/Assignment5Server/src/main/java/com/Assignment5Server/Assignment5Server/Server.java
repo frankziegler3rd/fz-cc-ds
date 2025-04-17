@@ -41,7 +41,7 @@ public class Server {
 		} catch (JsonProcessingException e) { 
 			System.out.println(e); 
 		}
-		return json;
+		return json+"\n";
 	}
 
 	/* part 2 endpoint 2 */
@@ -58,7 +58,7 @@ public class Server {
 		} catch (JsonProcessingException e) {
 			System.out.println(e);
 		}
-		return json;
+		return json+"\n";
 	}
 
 	/* part 2 endpoint 3 */
@@ -75,7 +75,7 @@ public class Server {
 		} catch (JsonProcessingException e) {
 			System.out.println(e);
 		}
-		return json;
+		return json+"\n";
 	}
 
 	/* part 3 */
@@ -89,6 +89,6 @@ public class Server {
 		} catch (JsonProcessingException e) {
 			System.out.println(e);
 		}
-		return ts.toString();
+		return ts.toString()+"\n";
 	} 
 }
