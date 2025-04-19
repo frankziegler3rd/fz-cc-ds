@@ -79,16 +79,35 @@ public class Server {
 	}
 
 	/* part 3 */
-	@PostMapping("/part3/treeset")
-	public String postTreeSet(@RequestBody String msg) {
+	@PostMapping("/part3/postTreeSet")
+	public String postTreeSet(@RequestBody String msg){
+		return msg;
+	} 
+	/* part 4 */
+	@PostMapping("/part4/treeSetDeserialize")
+	public String treeSetDeserialize(@RequestBody String msg) {
 		ObjectMapper om = new ObjectMapper();
 		om.findAndRegisterModules();
-		TreeSet<Character> ts = null;
+		TreeSet<String> ts = null;
 		try {
 			ts = om.readValue(msg, TreeSet.class);
 		} catch (JsonProcessingException e) {
 			System.out.println(e);
 		}
-		return ts.toString()+"\n";
+		ts.add("World");
+		return ts.toString()+"\nThe first item in this treeset is " + ts.first() + ".\nThe last item in this treeset is " + ts.last() + ".";
 	} 
+	/* part 5 */
+	@PostMapping("/part5/pokemon")
+	public String deserializePokemon(@RequestBody String msg){
+		ObjectMapper om = new ObjectMapper();
+		om.findAndRegisterModules();
+		Pokemon pika = null;
+		try{
+			pika = om.readValue(msg, Pokemon.class);
+		} catch (JsonProcessingException e){
+			System.out.println(e);
+		}
+		return "Name: " + pika.getName() + ", shiny: " + pika.getShiny() + ", type: " + pika.getType() + ".";
+	}
 }
