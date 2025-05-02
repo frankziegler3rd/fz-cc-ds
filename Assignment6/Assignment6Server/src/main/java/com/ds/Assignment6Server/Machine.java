@@ -23,6 +23,8 @@ public class Machine {
         this.waitingOn = waitingOn;
     }
 
+    public Machine() {}
+
     // omitted getters and setters because all we really need is a formatted string of the machine state
 
     public String toString() {
