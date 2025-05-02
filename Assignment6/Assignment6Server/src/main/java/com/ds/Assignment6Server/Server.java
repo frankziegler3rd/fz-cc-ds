@@ -10,9 +10,14 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestBody;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.net.http.HttpResponse.BodyHandlers;
+import java.net.URI;
+import java.time.Duration;
+import java.io.*;
 
 @RestController
 @SpringBootApplication
@@ -28,18 +33,18 @@ public class Server {
 		HttpClient client = HttpClient.newBuilder()
 									.build();
 		HttpRequest req = HttpRequest.newBuilder()
-									.uri(URI.create(url))
+									.uri(URI.create("http://elvis.rowan.edu/~mckeep82/ds/machine_states/xN3b82lmTM.json"))
 									.timeout(Duration.ofMinutes(1))
 									.build();
 		HttpResponse<String> response = null;
 		try {
-			response = client.send(request, BodyHandlers.ofString());
+			response = client.send(req, BodyHandlers.ofString());
 		} catch (IOException | InterruptedException e) {
 			System.out.println(e);
 		}
 		// construct machine
 		ObjectMapper om = new ObjectMapper();
-		objectMapper.enable(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT);
+		om.enable(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT);
 		Machine m = null;
 		try {
 			m = om.readValue(response.body(), Machine.class);

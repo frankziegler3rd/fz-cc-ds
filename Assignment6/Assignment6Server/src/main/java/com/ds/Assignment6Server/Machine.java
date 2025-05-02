@@ -1,7 +1,7 @@
 /*
  * Frank Ziegler, Calen Cuesta -- Assignment 6
  */
-
+package com.ds.Assignment6Server;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
