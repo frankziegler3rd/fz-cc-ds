@@ -1,8 +1,9 @@
 /*
- * Frank Ziegler -- Assignment 6
+ * Frank Ziegler, Calen Cuesta -- Assignment 6
  */
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 
 public class Machine {
 

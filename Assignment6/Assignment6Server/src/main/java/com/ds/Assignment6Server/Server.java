@@ -1,3 +1,6 @@
+/*
+ * Frank Ziegler, Calen Cuesta -- Assignment 6
+ */
 package com.ds.Assignment6Server;
 
 import org.springframework.boot.SpringApplication;
