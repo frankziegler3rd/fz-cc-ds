@@ -44,10 +44,11 @@ public class Server {
 		SpringApplication.run(Server.class, args);
 	}
 
-	/* ------------------------------------------------------------------------------------------------------------------------------------- *
-	 * 																Problem 6																 |
-	 * ------------------------------------------------------------------------------------------------------------------------------------- *
+	/* ----------------------------------------------------------------------------------------------------- * 
+	 *                                               Problem 6                                               *
+	 * ----------------------------------------------------------------------------------------------------- * 
 	 */
+
 	@GetMapping("/deadlock")
 	public boolean detectDeadlock() {
 		List<Machine> machines = getMachines();
@@ -98,12 +99,11 @@ public class Server {
 			}
 		}
 		
-		
 		int n = machineAndResourceIDs.size();
 		int[][] adjacencyMatrix = new int[n][n]; // EDGES!!!!
 		String[] machinesAndResources = machineAndResourceIDs.toArray(new String[n]);
 
-		for	(int i = 0; i < n; i++) {
+		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < n; j++) {
 				Machine machine = getMachineByID(machinesAndResources[i], machines);
 				if(machine != null) {
@@ -144,12 +144,12 @@ public class Server {
 		ArrayList<String> machineLinks = new ArrayList(Arrays.asList( "5RSqq1AA2l.json", "8kh6MOH5Ea.json", "qKgug1Afsb.json", "vTnGy8QQAS.json", "xN3b82lmTM.json" ));
 		List<Machine> machines = new ArrayList<Machine>();
 		HttpClient client = HttpClient.newBuilder()
-									  .build();
+								.build();
 		for (String machine : machineLinks) {
 			HttpRequest req = HttpRequest.newBuilder()
-										.uri(URI.create("http://elvis.rowan.edu/~mckeep82/ds/machine_states/"+machine))
-										.timeout(Duration.ofMinutes(1))
-										.build();
+								.uri(URI.create("http://elvis.rowan.edu/~mckeep82/ds/machine_states/"+machine))
+								.timeout(Duration.ofMinutes(1))
+								.build();
 			HttpResponse<String> response = null;
 			try {
 				response = client.send(req, BodyHandlers.ofString());
@@ -170,9 +170,9 @@ public class Server {
 		return machines;
 	}
 
-	/* ------------------------------------------------------------------------------------------------------------------------------------- *
-	 * 																Problem 7																 |
-	 * ------------------------------------------------------------------------------------------------------------------------------------- *
+	/* ----------------------------------------------------------------------------------------------------- * 
+	 *                                               Problem 7                                               *
+	 * ----------------------------------------------------------------------------------------------------- * 
 	 */
 	Queue<String> inbox = new ArrayDeque<>();
 
@@ -187,9 +187,9 @@ public class Server {
 		return message+"\n";
 	}
 
-	/* ------------------------------------------------------------------------------------------------------------------------------------- *
-	 * 																Problem 8																 |
-	 * ------------------------------------------------------------------------------------------------------------------------------------- *
+	/* ----------------------------------------------------------------------------------------------------- * 
+	 *                                               Problem 8                                               *
+	 * ----------------------------------------------------------------------------------------------------- * 
 	 */
 	@GetMapping("/getTime")
 	public String getTime() {
