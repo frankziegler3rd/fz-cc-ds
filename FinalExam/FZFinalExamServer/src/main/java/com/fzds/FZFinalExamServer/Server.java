@@ -53,7 +53,7 @@ public class Server {
 	 *
 	 * 			m1	m2	r1	r2
 	 *		m1	0	0	1	0	
-	 *      m2	0	0	0	1
+	 * 		m2	0	0	0	1
 	 *		r1	0	1	0	0
 	 *		r2	1	0	0	0
 	 *
@@ -71,6 +71,9 @@ public class Server {
 	 * "nodes" or "vertices" -- 5 machines, 5 resources. we check each node, create a boolean visited array for each one, add it to the visited
 	 * array and check all of the other nodes in the graph. if there is an edge between node and neighbor, i.e. waitForGraph[vertex][neighbor] == 1,
 	 * we recurse on that neighbor. IF WE HAVE SEEN THAT NEIGHBOR BEFORE, we know we are in a cycle. 
+	 *
+	 * refer to the above 4x4 matrix. our first edge is [m1][r1]. then we check neighbors i for [r1][i] == 1. our next edge is [r1][m2]. then we check
+	 * neighbors i for [m2][i] == 1. our next edge is [m2][r2]. then [r2][m1]. then again we see [m1][r1]. boom Cycle.
 	 *
 	 * this problem covers like 65-75% of overall code in this class. it was tough to work through, but i have been obsessed with actually implementing
 	 * the solution to it since we covered it in OS. thank you for giving me the chance to try my hand!
