@@ -44,7 +44,7 @@ public class Server {
 	 *                                               Problem 6                                               *
 	 * ----------------------------------------------------------------------------------------------------- * 
 	 *
-	 * whew this was a doozy. i feel the need to in-depth explain my thinking behind this one, cuz to be totally honest i'm not sure it would work for all test
+	 * i feel the need to in-depth explain my thinking behind this one, cuz to be totally honest i'm not sure it would work for all test
 	 * cases but it does work for this one. 
 	 *
 	 * the overall idea here is to create a digraph of machines and resources. to represent this digraph i chose an adjacency matrix.
@@ -67,10 +67,10 @@ public class Server {
 	 * unique). however, it doesn't actually matter what integer (index in the adjacency matrix) they map to because we're just checking for a
 	 * cycle in the most general sense. 
 	 *
-	 * on the DFS algorithm: this is a trick i picked up through DSA/DAA and leetcoding. in the case of this particular example, there are 10
-	 * "nodes" or "vertices" -- 5 machines, 5 resources. we check each node, create a boolean visited array for each one, add it to the visited
-	 * array and check all of the other nodes in the graph. if there is an edge between node and neighbor, i.e. waitForGraph[vertex][neighbor] == 1,
-	 * we recurse on that neighbor. IF WE HAVE SEEN THAT NEIGHBOR BEFORE, we know we are in a cycle. 
+	 * on the DFS algorithm: in the case of this particular example, there are 10 "nodes" or "vertices" -- 5 machines, 5 resources. we check each node, 
+	 * create a boolean visited array for each one, add it to the visited array and check all of the other nodes in the graph. if there is an edge 
+	 * between node and neighbor, i.e. waitForGraph[vertex][neighbor] == 1, we recurse on that neighbor. IF WE HAVE SEEN THAT NEIGHBOR BEFORE, we know 
+	 * we are in a cycle. 
 	 *
 	 * refer to the above 4x4 matrix. our first edge is [m1][r1]. then we check neighbors i for [r1][i] == 1. our next edge is [r1][m2]. then we check
 	 * neighbors i for [m2][i] == 1. our next edge is [m2][r2]. then [r2][m1]. then again we see [m1][r1]. boom Cycle.
